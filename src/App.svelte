@@ -172,7 +172,7 @@
         <h1 class="text-3xl font-bold text-primary">{currentT.title}</h1>
         <span class="hidden sm:block text-gray-600 dark:text-gray-300">{currentT.tagline}</span>
       </div>
-      <a href="/reports/index.html" class="text-primary font-medium hover:underline">{currentT.viewReports}</a>
+      <a href="/reports" class="text-primary font-medium hover:underline">{currentT.viewReports}</a>
     </div>
   </header>
 

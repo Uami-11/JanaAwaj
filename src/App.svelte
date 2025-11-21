@@ -46,15 +46,34 @@
     selectedCategory = null;
     subject = ''; email = ''; message = ''; files = []; captchaInput = '';
   }
-
-  function handleFileChange(e) {
-    const newFiles = Array.from(e.target.files);
-    if (files.length + newFiles.length > 6) {
-      alert('Maximum 6 attachments allowed');
-      return;
-    }
-    files = [...files, ...newFiles];
+function isFileAllowed(file) {
+const blockedExtensions = ['.exe', '.bat', '.sh', '.js', '.vbs', '.ps1', '.jar', '.apk'];
+const ext = '.' + file.name.toLowerCase().split('.').pop();
+if (blockedExtensions.includes(ext)) {
+  alert(`File type not allowed: ${ext}`);
+  return false;
+}
+  // Allow only images and short videos
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'video/mp4', 'video/webm'];
+  if (!allowedTypes.includes(file.type)) {
+    alert(`File "${file.name}" not allowed. Only images and MP4/WebM videos.`);
+    return false;
   }
+  // Max 8 MB per file (adjust as you like)
+  if (file.size > 8 * 1024 * 1024) {
+    alert(`"${file.name}" is too big. Max 8 MB per file.`);
+    return false;
+  }
+  return true;
+}
+function handleFileChange(e) {
+  const newFiles = Array.from(e.target.files).filter(isFileAllowed);
+  if (files.length + newFiles.length > 6) {
+    alert('Maximum 6 attachments allowed');
+    return;
+  }
+  files = [...files, ...newFiles];
+}
 
   function removeFile(i) {
     files = files.filter((_, idx) => idx !== i);

@@ -146,9 +146,9 @@ $: t = translations[lang];
           People's Voice for Transparent Nepal
         </span>
       </div>
-      <a href="/reports/index.html" class="text-primary font-medium hover:underline">
-        View All Reports
-      </a>
+<a href="/reports" class="text-primary font-medium hover:underline">
+  View All Reports
+</a>
     </div>
   </header>
 

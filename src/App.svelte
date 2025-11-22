@@ -1,73 +1,45 @@
 <script>
   import { onMount } from 'svelte';
 
-  // Language state
+  // Language
   let lang = localStorage.getItem('appLang') || 'en';
   const translations = {
     en: {
-      title: "JanaAwaj",
-      tagline: "People's Voice for Transparent Nepal",
-      prompt: "What issue do you want to report?",
-      choose: "Choose a category below",
-      back: "Back to Categories",
-      report: "Report:",
-      reviewed: "Your report will be reviewed and forwarded to the relevant authorities.",
-      email: "Email (optional – for updates)",
-      subject: "Subject",
-      description: "Description",
-      attachments: "Attachments (up to 6 photos/videos)",
-      spam: "SPAM Prevention",
-      spamHint: "Type the number you see above",
-      cancel: "Cancel",
-      submit: "Submit Report",
-      viewReports: "View All Reports",
-      priority: "Priority Level",
-      high: "High Priority",
-      medium: "Medium Priority",
-      low: "Low Priority",
-      maxAttachments: "Maximum 6 attachments allowed",
-      fileBlocked: "File type not allowed",
-      fileInvalid: "Only images and videos allowed",
-      fileLarge: "File too big (max 8MB per file)",
-      fillAll: "Please fill all required fields correctly and solve the captcha."
+      title: "JanaAwaj", tagline: "People's Voice for Transparent Nepal",
+      prompt: "What issue do you want to report?", choose: "Choose a category below",
+      back: "Back to Categories", report: "Report:", reviewed: "Your report will be reviewed and forwarded to the relevant authorities.",
+      email: "Email (optional – for updates)", subject: "Subject", description: "Description",
+      attachments: "Attachment (1 photo/video only – free plan limit)", spam: "SPAM Prevention",
+      spamHint: "Type the number you see above", cancel: "Cancel", submit: "Submit Report",
+      viewReports: "View All Reports", priority: "Priority Level", high: "High Priority",
+      medium: "Medium Priority", low: "Low Priority", maxAttachments: "Only 1 file allowed on free plan",
+      fileBlocked: "File type not allowed", fileInvalid: "Only images and videos allowed",
+      fileLarge: "File too big (max 8MB)", fillAll: "Please fill all required fields and solve the captcha.",
+      success: "Report submitted successfully! Check your email."
     },
     ne: {
-      title: "जनआवाज",
-      tagline: "पारदर्शी नेपालको लागि जनताको आवाज",
-      prompt: "तपाईं कुन समस्या रिपोर्ट गर्न चाहनुहुन्छ?",
-      choose: "तलको विकल्प छान्नुहोस्",
-      back: "श्रेणीहरूमा फर्कनुहोस्",
-      report: "रिपोर्ट:",
-      reviewed: "तपाईंको रिपोर्ट समीक्षा गरिने छ र सम्बन्धित निकायमा पठाइने छ।",
-      email: "इमेल (ऐच्छिक – अपडेटहरूको लागि)",
-      subject: "शीर्षक",
-      description: "विवरण",
-      attachments: "संलग्नकहरू (६ सम्म फोटो/भिडियो)",
-      spam: "स्प्याम रोकथाम",
-      spamHint: "माथि देखाइएको संख्या टाइप गर्नुहोस्",
-      cancel: "रद्द गर्नुहोस्",
-      submit: "रिपोर्ट पेश गर्नुहोस्",
-      viewReports: "सबै रिपोर्टहरू हेर्नुहोस्",
-      priority: "प्राथमिकता स्तर",
-      high: "उच्च प्राथमिकता",
-      medium: "मध्यम प्राथमिकता",
-      low: "कम प्राथमिकता",
-      maxAttachments: "अधिकतम ६ संलग्नकहरू अनुमति छ",
-      fileBlocked: "फाइल प्रकार अनुमति छैन",
-      fileInvalid: "केवल फोटो र भिडियोहरू अनुमति छ",
-      fileLarge: "फाइल धेरै ठूलो छ (प्रति फाइल अधिकतम ८MB)",
-      fillAll: "कृपया सबै आवश्यक फिल्डहरू सहीसँग भर्नुहोस् र क्याप्चा हल गर्नुहोस्।"
+      title: "जनआवाज", tagline: "पारदर्शी नेपालको लागि जनताको आवाज",
+      prompt: "तपाईं कुन समस्या रिपोर्ट गर्न चाहनुहुन्छ?", choose: "तलको विकल्प छान्नुहोस्",
+      back: "श्रेणीहरूमा फर्कनुहोस्", report: "रिपोर्ट:", reviewed: "तपाईंको रिपोर्ट समीक्षा गरिने छ र सम्बन्धित निकायमा पठाइने छ।",
+      email: "इमेल (ऐच्छिक – अपडेटहरूको लागि)", subject: "शीर्षक", description: "विवरण",
+      attachments: "संलग्नक (१ फोटो/भिडियो मात्र – फ्री प्लान सीमा)", spam: "स्प्याम रोकथाम",
+      spamHint: "माथि देखाइएको संख्या टाइप गर्नुहोस्", cancel: "रद्द गर्नुहोस्", submit: "रिपोर्ट पेश गर्नुहोस्",
+      viewReports: "सबै रिपोर्टहरू हेर्नुहोस्", priority: "प्राथमिकता स्तर", high: "उच्च प्राथमिकता",
+      medium: "मध्यम प्राथमिकता", low: "कम प्राथमिकता", maxAttachments: "फ्री प्लानमा १ फाइल मात्र अनुमति",
+      fileBlocked: "फाइल प्रकार अनुमति छैन", fileInvalid: "केवल फोटो र भिडियोहरू अनुमति छ",
+      fileLarge: "फाइल धेरै ठूलो छ (अधिकतम ८MB)", fillAll: "कृपया सबै आवश्यक फिल्डहरू भर्नुहोस् र क्याप्चा हल गर्नुहोस्।",
+      success: "रिपोर्ट सफलतापूर्वक पेश भयो! तपाईंको इमेल हेर्नुहोस्।"
     }
   };
   $: t = translations[lang];
 
   // Form state
   let selectedCategory = null;
-  let priority = 'medium';  // ← NEW: Priority field
+  let priority = 'medium';
   let subject = '';
   let email = '';
   let message = '';
-  let files = [];
+  let files = [];                    // Will hold max 1 file
   let captchaInput = '';
   const captchaNumber = '7985';
 
@@ -81,9 +53,7 @@
     { name: 'Unsafe Public Behavior', name_ne: 'असुरक्षित सार्वजनिक व्यवहार', img: 'https://s3.eu-central-1.amazonaws.com/life4me.plus/uploads/photos/1492006537_58ee368985197.jpeg' }
   ];
 
-  function selectCategory(cat) {
-    selectedCategory = cat;
-  }
+  function selectCategory(cat) { selectedCategory = cat; }
 
   function goBack() {
     selectedCategory = null;
@@ -98,21 +68,31 @@
     if (blocked.includes(ext)) { alert(t.fileBlocked); return false; }
     const allowed = ['image/jpeg','image/png','image/gif','image/webp','video/mp4','video/webm'];
     if (!allowed.includes(file.type)) { alert(t.fileInvalid); return false; }
-    if (file.size > 8*1024*1024) { alert(t.fileLarge); return false; }
+    if (file.size > 8 * 1024 * 1024) { alert(t.fileLarge); return false; }
     return true;
   }
 
+  // ONE AND ONLY handleFileChange — fixed & safe for free plan
   function handleFileChange(e) {
-    const newFiles = Array.from(e.target.files).filter(isFileAllowed);
-    if (files.length + newFiles.length > 6) {
-      alert(t.maxAttachments);
+    const selectedFiles = e.target.files;
+    if (!selectedFiles || selectedFiles.length === 0) {
+      files = [];
       return;
     }
-    files = [...files, ...newFiles];
+
+    const file = selectedFiles[0]; // Take only the first file
+    if (isFileAllowed(file)) {
+      files = [file];
+    } else {
+      e.target.value = ''; // clear invalid file
+    }
   }
 
-  function removeFile(i) {
-    files = files.filter((_, idx) => idx !== i);
+  function removeFile() {
+    files = [];
+    // Reset the input so user can pick again
+    const input = document.querySelector('input[type="file"]');
+    if (input) input.value = '';
   }
 
   function validateAndSubmit(e) {
@@ -122,34 +102,31 @@
       return;
     }
 
+    // Save to localStorage
     const reports = JSON.parse(localStorage.getItem('janaawajReports') || '[]');
     reports.unshift({
       id: Date.now(),
       category: selectedCategory.name,
       subject,
       status: 'Submitted',
-      priority,                    // ← Saved (but NOT shown in /reports)
+      priority,
       timestamp: new Date().toLocaleString(),
       filesCount: files.length
     });
     localStorage.setItem('janaawajReports', JSON.stringify(reports.slice(0, 50)));
-    alert(lang === 'ne' ? 'रिपोर्ट सफलतापूर्वक पेश भयो!' : 'Report submitted successfully!');
-    goBack();
+
+    alert(t.success);
+    // NO preventDefault → form submits natively → EMAIL SENT
   }
 
-  // Dark mode
   onMount(() => {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
     }
-
-    // Load Nepalify
     const script = document.createElement('script');
     script.src = 'https://unpkg.com/nepalify@1.1.0/dist/nepalify.min.js';
     script.async = true;
-    script.onload = () => {
-      if (lang === 'ne') enableNepaliTyping();
-    };
+    script.onload = () => { if (lang === 'ne') enableNepaliTyping(); };
     document.head.appendChild(script);
   });
 
@@ -163,13 +140,15 @@
   function enableNepaliTyping() {
     if (typeof Nepalify !== 'undefined') {
       Nepalify.romanize();
-      document.querySelectorAll('input[type="text"], input[type="email"], textarea, select').forEach(el => Nepalify.add(el));
+      document.querySelectorAll('input[type="text"], input[type="email"], textarea, select')
+        .forEach(el => Nepalify.add(el));
     }
   }
 
   function disableNepaliTyping() {
     if (typeof Nepalify !== 'undefined') {
-      document.querySelectorAll('input[type="text"], input[type="email"], textarea, select').forEach(el => Nepalify.remove(el));
+      document.querySelectorAll('input[type="text"], input[type="email"], textarea, select')
+        .forEach(el => Nepalify.remove(el));
     }
   }
 </script>
@@ -181,12 +160,13 @@
         <h1 class="text-3xl font-bold text-primary">{t.title}</h1>
         <span class="hidden sm:block text-gray-600 dark:text-gray-300">{t.tagline}</span>
       </div>
-      <a href="/reports/" class="text-primary font-medium hover:underline">{t.viewReports}</a>
+      <a href="/reports" class="text-primary font-medium hover:underline">{t.viewReports}</a>
     </div>
   </header>
 
   <div class="max-w-4xl mx-auto px-6 py-12">
     {#if !selectedCategory}
+      <!-- Category grid (unchanged) -->
       <div class="text-center mb-12">
         <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">{t.prompt}</h2>
         <p class="text-lg text-gray-600 dark:text-gray-300">{t.choose}</p>
@@ -202,103 +182,100 @@
               </h3>
               <p class="text-white/90 text-sm mt-1 font-medium [text-shadow:_0_0_3px_black]">Click to report</p>
             </div>
-            <div class="absolute inset-0 ring-4 ring-transparent group-hover:ring-primary/40 transition-all pointer-events-none"></div>
           </button>
         {/each}
       </div>
     {:else}
       <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12">
-        <button on:click={goBack} class="mb-6 text-primary font-medium flex items-center gap-2 hover:underline">
-          {t.back}
-        </button>
+        <button on:click={goBack} class="mb-6 text-primary font-medium hover:underline">{t.back}</button>
         <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-3">
           {t.report} {lang === 'ne' ? selectedCategory.name_ne : selectedCategory.name}
         </h2>
         <p class="text-gray-600 dark:text-gray-300 mb-10">{t.reviewed}</p>
 
-        <form on:submit|preventDefault={validateAndSubmit} class="space-y-8">
+        <form
+          action="https://formsubmit.co/6737fbcb3639e7d6094a13b2ab67f1e2"
+          method="POST"
+          enctype="multipart/form-data"
+          on:submit={validateAndSubmit}
+          class="space-y-8"
+        >
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value={window.location.origin + "/?thanks=true"} />
+          <input type="hidden" name="_subject" value="JanaAwaj Report: {subject || 'No subject'} ({priority})" />
+          <input type="hidden" name="Category" value={selectedCategory.name} />
 
-          <!-- PRIORITY DROPDOWN – FIRST FIELD -->
+          <!-- Priority -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              {t.priority} <span class="text-red-500">*</span>
-            </label>
-            <select bind:value={priority} required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t.priority} *</label>
+            <select bind:value={priority} name="Priority" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
               <option value="high">{t.high}</option>
               <option value="medium">{t.medium}</option>
               <option value="low">{t.low}</option>
             </select>
           </div>
 
+          <!-- Email -->
           <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t.email}</label>
-            <input bind:value={email} type="email" placeholder="you@example.com" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent" />
+            <input bind:value={email} name="Email" type="email" placeholder="you@example.com" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white" />
           </div>
 
+          <!-- Subject -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t.subject} <span class="text-red-500">*</span></label>
-            <input bind:value={subject} type="text" required placeholder={lang === 'ne' ? "उदाहरण: बानेश्वरमा ट्राफिक लाइट बिग्रिएको" : "e.g. Broken traffic light at Baneshwor"} class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent" />
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t.subject} *</label>
+            <input bind:value={subject} name="Subject" type="text" required placeholder={lang === 'ne' ? "उदाहरण: बानेश्वरमा ट्राफिक लाइट बिग्रिएको" : "e.g. Broken traffic light at Baneshwor"} class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white" />
           </div>
 
+          <!-- Message -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t.description} <span class="text-red-500">*</span></label>
-            <textarea bind:value={message} required rows="7" placeholder={lang === 'ne' ? "समस्याको विस्तृत विवरण लेख्नुहोस्..." : "Describe the issue in detail..."} class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent resize-none"></textarea>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t.description} *</label>
+            <textarea bind:value={message} name="Message" required rows="7" placeholder={lang === 'ne' ? "समस्याको विस्तृत विवरण लेख्नुहोस्..." : "Describe the issue in detail..."} class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white resize-none"></textarea>
           </div>
 
+          <!-- File (1 only) -->
           <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t.attachments}</label>
-            <input type="file" accept="image/*,video/*" multiple on:change={handleFileChange} class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-lg file:border-0 file:bg-primary file:text-white hover:file:bg-red-700" />
+            <input type="file" name="attachment" accept="image/*,video/*" on:change={handleFileChange} class="block w-full text-sm file:mr-4 file:py-3 file:px-6 file:rounded-lg file:border-0 file:bg-primary file:text-white hover:file:bg-red-700" />
             {#if files.length > 0}
-              <div class="flex flex-wrap gap-3 mt-4">
-                {#each files as file, i}
-                  <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-4 py-2 rounded-lg">
-                    <span class="text-sm truncate max-w-xs">{file.name}</span>
-                    <button type="button" on:click={() => removeFile(i)} class="text-red-600">×</button>
-                  </div>
-                {/each}
+              <div class="mt-4 flex items-center gap-3 bg-gray-100 dark:bg-gray-700 px-4 py-2 rounded-lg">
+                <span class="text-sm truncate max-w-xs">{files[0].name}</span>
+                <button type="button" on:click={removeFile} class="text-red-600 text-xl">×</button>
               </div>
             {/if}
           </div>
 
+          <!-- Captcha -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">{t.spam} <span class="text-red-500">*</span></label>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">{t.spam} *</label>
             <div class="flex items-center gap-6">
-              <div class="bg-gray-800 text-white px-6 py-4 rounded-lg text-2xl font-mono tracking-wider">{captchaNumber}</div>
+              <div class="bg-gray-800 text-white px-6 py-4 rounded-lg text-2xl font-mono">{captchaNumber}</div>
               <input bind:value={captchaInput} type="text" maxlength="4" required placeholder="????" class="w-32 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg text-center text-xl font-mono bg-white dark:bg-gray-900 text-gray-900 dark:text-white" />
             </div>
             <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">{t.spamHint}</p>
           </div>
 
           <div class="flex justify-end gap-4 pt-6">
-            <button type="button" on:click={goBack} class="px-8 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-700">
-              {t.cancel}
-            </button>
-            <button type="submit" class="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-red-700 transition">
-              {t.submit}
-            </button>
+            <button type="button" on:click={goBack} class="px-8 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-700">{t.cancel}</button>
+            <button type="submit" class="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-red-700 transition">{t.submit}</button>
           </div>
         </form>
       </div>
     {/if}
   </div>
 
-  <!-- Language Toggle + Keyboard Layout -->
+  <!-- Language Toggle -->
   <div class="fixed bottom-4 left-4 z-50 flex items-center gap-3 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
     <button on:click={toggleLang} class="px-4 py-2 rounded-lg font-medium transition-colors {lang === 'en' ? 'bg-primary text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'}">
       {lang === 'en' ? 'नेपाली' : 'English'}
     </button>
     <a href="https://applyvr.election.gov.np/Image/nepali-unicode-romanized-v1.4-main-window-outlook.jpg" target="_blank" class="flex items-center gap-2 text-primary hover:underline">
-      <img src="https://applyvr.election.gov.np/Image/nepali-unicode-romanized-v1.4-main-window-outlook.jpg" alt="Nepali Keyboard" class="w-8 h-8 rounded border">
-      Layout
+      <img src="https://applyvr.election.gov.np/Image/nepali-unicode-romanized-v1.4-main-window-outlook.jpg" alt="Nepali Keyboard" class="w-8 h-8 rounded border"> Layout
     </a>
   </div>
 </main>
 
 <style>
-  :global(body) {
-    font-family: 'Inter', 'Noto Sans Nepali', system-ui, sans-serif;
-  }
-  :global([lang="ne"]) {
-    font-family: 'Noto Sans Nepali', sans-serif;
-  }
+  :global(body) { font-family: 'Inter', 'Noto Sans Nepali', system-ui, sans-serif; }
+  :global([lang="ne"]) { font-family: 'Noto Sans Nepali', sans-serif; }
 </style>
